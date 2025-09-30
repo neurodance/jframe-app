@@ -1,0 +1,17 @@
+version: "3.9"
+services:
+  jframe-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: jframe-app-local:latest
+    container_name: jframe-app
+    ports:
+      - "3001:3000"
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ../..:/workspaces:cached
+      - /workspaces/jframe-app/node_modules
+    working_dir: /workspaces/jframe-app
+    command: sh -lc "npm run dev"
